@@ -25,7 +25,7 @@ export default {
         //     console.log(childData);
         //   });
         // });
-        const info = await firebase.database().ref(`/users/${uid}/info`).once('value');
+        const info = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val();
         // проблема не решена, обязательно решить. Проблема: вывод данных из firebase.database
         console.log(info);
         commit('SET_INFO', info);

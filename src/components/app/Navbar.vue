@@ -16,7 +16,8 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            USER NAME
+            <!-- {{ this.name }} -->
+            {{ this.$store.getters.INFO.name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -51,12 +52,12 @@ export default {
       dropdown: null,
     };
   },
-  // computed: {
-  //   name() {
-  //     return this.$store.getters.info.name;
-  //   },
-  // },
-  mounted() {
+  computed: {
+    // name() {
+    //   return this.$store.getters.INFO.name;
+    // },
+  },
+  async mounted() {
     M.AutoInit();
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: true,
@@ -64,9 +65,11 @@ export default {
     this.interval = setInterval(() => {
       this.date = new Date();
     }, 1000);
+    await this.FETCH_INFO();
+    console.log(this.$store.getters.INFO.name);
   },
   methods: {
-    ...mapActions(['LOG_OUT']),
+    ...mapActions(['LOG_OUT', 'FETCH_INFO']),
     async logout() {
       await this.LOG_OUT();
       this.$router.push('/?message=logout');

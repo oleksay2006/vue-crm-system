@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import firebase from 'firebase/compat/app';
 import info from './info';
+import category from './category';
 
 // import auth from './auth';
 
@@ -68,5 +69,6 @@ export default new Vuex.Store({
   },
   modules: {
     info,
+    category,
   },
 });
